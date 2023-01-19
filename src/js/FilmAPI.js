@@ -8,7 +8,7 @@ const axios2 = axios.create({
     
 });
 
-export default class FilmAPI {
+export class FilmAPI {
     constructor() {
         this.searchQuery = null;
         this.page = 1;
