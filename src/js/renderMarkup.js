@@ -1,25 +1,50 @@
-export function renderMarkup(data, genres) {
-  const { id, poster_path, title, release_date, vote_average } = data;
-  const posterPath = data.poster_path
-    ? `https://image.tmdb.org/t/p/w300${poster_path}`
-    : `https://astoriamuseums.org/wp-content/uploads/2020/10/OFM-poster-not-available.png`;
-  const releaseYear = new Date(Date.parse(release_date)).getFullYear() || '';
+import { URL_IMG } from './themoviedbAPI';
 
-  return `<li class="gallery__item movie-card" data-id="${id}">
-                  <div class="movie-card__poster-thumb">
-                    <img src="${posterPath}"
-                        class="movie-card__poster"
-                        alt="${title}"
-                                            />
-                  </div>
-                  <div class="movie-card__wrap">
-                      <h2 class="movie-info-title"> ${title}</h2>
-                      <div class="movie-info-list">
-                      <p class="info-item-genre">${genres}</p>
-                        <span class="info-item-slash"> | </span>
-                        <p class="info-item-year">${releaseYear}</p>
-                      </div>
-                  </div>
-            </li>`;
+
+export default function createFilmCardMarkup(filmData) {
+   const {
+      poster_path,
+      genre_ids,
+      id,
+      title,
+      release_date,
+      vote_average,
+      genres,
+   } = filmData;
+   const genresArr = genres?.map(({ id }) => id) || [];
+   const filmGenresId = genre_ids?.slice(0, 3) || genresArr;
+   const filmGenres = [];
+   for (const filmId of filmGenresId) {
+      for (const genre of genresA) {
+         if (filmId === genre.id) {
+            filmGenres.push(genre.name);
+         }
+      }
+   }
+   const isLanguageUA = localStorage.getItem('language') === 'ua';
+   if (filmGenres.length > 2) {
+      filmGenres[filmGenres.length - 1] = isLanguageUA ? 'Інші' : 'Others';
+   }
+   const filmGenresString = filmGenres.join(', ');
+
+   const filmDate = release_date?.slice(0, 4) || '...';
+   const filmPoster = poster_path
+      ? URL_IMG + poster_path
+      : 'https://www.reelviews.net/resources/img/default_poster.jpg';
+
+   return `<li data-id="${id}" class="card film-card">
+        <div class="film-card__img-wrap">
+            <img
+                class="film-card__img"
+                src=${filmPoster}
+                alt=${title}
+            />
+        </div>
+        <h2 class="film-card__title">${title}</h2>
+        <div class="film-card__wrap">
+            <span class="film-card__info">${filmGenresString} | ${filmDate}</span>
+            <span data-film-rating class="film-card__rating">${vote_average}</span>
+        </div>
+    </li>`;
 }
 
