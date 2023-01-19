@@ -1,50 +1,67 @@
-import { URL_IMG } from './themoviedbAPI';
+import axios from 'axios';
 
+const API_KEY = '2963fc82afd3cb57f64d050a1ba5935c';
 
-export default function createFilmCardMarkup(filmData) {
-   const {
-      poster_path,
-      genre_ids,
-      id,
-      title,
-      release_date,
-      vote_average,
-      genres,
-   } = filmData;
-   const genresArr = genres?.map(({ id }) => id) || [];
-   const filmGenresId = genre_ids?.slice(0, 3) || genresArr;
-   const filmGenres = [];
-   for (const filmId of filmGenresId) {
-      for (const genre of genresA) {
-         if (filmId === genre.id) {
-            filmGenres.push(genre.name);
-         }
-      }
-   }
-   const isLanguageUA = localStorage.getItem('language') === 'ua';
-   if (filmGenres.length > 2) {
-      filmGenres[filmGenres.length - 1] = isLanguageUA ? 'Інші' : 'Others';
-   }
-   const filmGenresString = filmGenres.join(', ');
+const filmsApi = axios.create({
+  baseURL: "https://api.themoviedb.org/3/",
+  params: {
+    api_key: API_KEY,
+  },
+});
 
-   const filmDate = release_date?.slice(0, 4) || '...';
-   const filmPoster = poster_path
-      ? URL_IMG + poster_path
-      : 'https://www.reelviews.net/resources/img/default_poster.jpg';
-
-   return `<li data-id="${id}" class="card film-card">
-        <div class="film-card__img-wrap">
-            <img
-                class="film-card__img"
-                src=${filmPoster}
-                alt=${title}
-            />
-        </div>
-        <h2 class="film-card__title">${title}</h2>
-        <div class="film-card__wrap">
-            <span class="film-card__info">${filmGenresString} | ${filmDate}</span>
-            <span data-film-rating class="film-card__rating">${vote_average}</span>
-        </div>
-    </li>`;
+export function fetchTopFilms(page = 1) {
+  return filmsApi.get(`trending/movie/day?page=${page}`)
 }
 
+
+export function createFilmItemMarkup(filmsArray) {
+  return filmsArray
+    .map(el => {
+      let elGenres = [];
+      for (let i = 0; i < el.genre_ids.length; i++) {
+        for (let index = 0; index < genresList.length; index++) {
+          if (genresList[index].id === el.genre_ids[i]) {
+            elGenres.push(genresList[index].name);
+          }
+        }
+      }
+
+      elGenres = elGenres.length ? elGenres.join(', ') : '';
+      let releaseDate = new Date(el.release_date).getFullYear();
+      if (elGenres && releaseDate) {
+        releaseDate = `| ${releaseDate}`;
+      } else {
+        releaseDate = releaseDate || '';
+      }
+
+      const imageSrc = el.poster_path
+        ? `https://image.tmdb.org/t/p/original/${el.poster_path}`
+        : 'https://www.reelviews.net/resources/img/default_poster.jpg';
+
+      return `
+    <li class="films__item" data-filmId="${el.id}">
+      <a href="" class="films__link" role="button">
+        <div class="films__img-container">
+          <img
+            src="${imageSrc}"
+            alt="${el.original_title} poster"
+            class="films__img"
+            loading="lazy"
+          />
+        </div>
+        <h2 class="films__title">${el.original_title}</h2>
+        <p class="films__description">
+          ${elGenres} ${releaseDate}
+        </p>
+      </a>
+    </li>`;
+    })
+    .join('');
+}
+
+
+ const refs = {
+
+  container: document.querySelector('.films .container')
+
+}

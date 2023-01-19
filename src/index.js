@@ -8,5 +8,6 @@ import './js/filter-panel';
 import './js/searchfield';
 
 
-import './js/renderMarkup';
-import './js/themoviedbAPI';
+
+
+import './js/movie'
