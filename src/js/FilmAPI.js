@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 
-const KEY = `d91911ebb88751cf9e5c4b8fdf4412c9`;
+const KEY = `2963fc82afd3cb57f64d050a1ba5935c`;
 
 const axios2 = axios.create({
     baseURL: 'https://api.themoviedb.org/3',
-    headers: {},
+    
 });
 
 export default class FilmAPI {
@@ -16,7 +16,7 @@ export default class FilmAPI {
 
     async  getFilms() {
         
-        const response = await axios2.get(`/search/movie?api_key=${KEY}&page=${this.page}&query=${this.searchQuery}`);
+        const response = await axios2.get(`/search/movie?api_key=${KEY}&language=en-US&page=${this.page}&query=${this.searchQuery}`);
         return response.data;
         
 
@@ -24,29 +24,37 @@ export default class FilmAPI {
 
     async getPopularFilms() {
 
-        const response = await axios2.get(`/trending/movie/day?api_key=${KEY}&page=${this.page}&query=${this.searchQuery}`);
+        const response = await axios2.get(`/trending/movie/day?api_key=${KEY}&language=en-US&page=${this.page}&query=${this.searchQuery}`);
         return response.data;
-    
+            
     }
 
     
     async getFilmsByGenres() {
         
-        const response = await axios2.get(`/genre/movie/list?api_key=${KEY}`);
+        const response = await axios2.get(`/genre/movie/list?api_key=${KEY}&language=en-US`);
         return response.data;
 
     }
 
+    async getFilmsByRating() {
+
+    }
+
+    async getFilmsByYears() {
+        
+    }
+
     async getFilmsByName() {
 
-        const response = await axios2.get(`/search/movie?query=${this.searchQuery}&api_key=${KEY}`,)
+        const response = await axios2.get(`/search/movie?query=${this.searchQuery}&api_key=${KEY}&language=en-US`,)
         return response.data;
 
     }
 
     async getFilmDetails(id) {
 
-        const response = await axios2.get(`/movie/${id}?api_key=${KEY}`)
+        const response = await axios2.get(`/movie/${id}?api_key=${KEY}&language=en-US`)
         return response.data;
 
     }
