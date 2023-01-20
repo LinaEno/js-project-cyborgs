@@ -14,11 +14,11 @@ export default class FilmAPI {
         this.page = 1;
     }
 
-    async  getFilms() {
+    async getFilms() {
         
         const response = await axios2.get(`/search/movie?api_key=${KEY}&language=en-US&page=${this.page}&query=${this.searchQuery}`);
         return response.data;
-        
+        console.log(response.data);
 
     }
 
