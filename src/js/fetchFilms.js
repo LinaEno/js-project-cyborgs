@@ -11,7 +11,7 @@ async function getPopularFilms() {
   return data.results;
 }
 
-async function renderMarkup(films) {
+function renderMarkup(films) {
   const markup = films
     .map(film => {
       return `<li class="cards__item" data-id=${film.id}>
@@ -28,6 +28,7 @@ async function renderMarkup(films) {
     })
     .join('');
   cardsListEl.insertAdjacentHTML('beforeend', markup);
+  return markup;
 }
 
 async function onLoadDocument() {
