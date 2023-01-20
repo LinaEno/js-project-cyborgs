@@ -17,9 +17,9 @@ export class FilmAPI {
         this.vote = '';
     }
 
-    async getPopularFilms() {
+    async getPopularFilms(page) {
     try {
-        const response = await axios2.get(`/trending/movie/day?api_key=${KEY}&language=en-US&page=${this.page}&query=${this.searchQuery}`);
+        const response = await axios2.get(`/trending/movie/day?api_key=${KEY}&language=en-US&page=${page}`);
         return response.data;
     } catch (error) {
         console.log(error);

@@ -1,8 +1,10 @@
-import FilmApi from './FilmAPI';
+'use strict';
+
+import { FilmAPI } from './FilmAPI';
 import { refs } from './refs';
 
-const filmApi = new FilmApi();
-console.log(filmApi);
+const filmApi = new FilmAPI();
+// console.log(filmApi);
 
 const onSearchFormSubmit = async event => {
   event.preventDefault();
