@@ -7,27 +7,27 @@
 
 // const filmApi = new FilmAPI();
 
+// console.log(filmApi);
+
 // onLoadDocument();
 
 
 
-// // async function getPopularFilms() {
-// //   const { data } = await axios.get(
-// //     'https://api.themoviedb.org/3/trending/movie/week?api_key=2963fc82afd3cb57f64d050a1ba5935c'
-// //   );
-// //   console.log(data);
-// //   return data.results;
-// // }
-
-// function renderMarkupCards() {
-//   refs.cardsListEl.insertAdjacentHTML('beforeend', markupCards);
+// async function getPopularFilms() {
+//   const { data } = await axios.get(
+//     'https://api.themoviedb.org/3/trending/movie/week?api_key=2963fc82afd3cb57f64d050a1ba5935c'
+//   );
+//   console.log(data);
+//   return data.results;
 // }
+
 
 
 // async function onLoadDocument() {
 //   try {
-//     const popularFilms = await filmApi.getPopularFilms();
-//     renderMarkupCards(popularFilms);
+//     const data = await filmApi.getPopularFilms();
+//     console.log(data);
+//     refs.cardsListEl.innerHTML = markupCards(data.results);
 //   } catch (error) {
 //     console.log(error);
 //   }
@@ -36,6 +36,7 @@
 import axios from 'axios';
 
 const cardsListEl = document.querySelector('.cards__list');
+
 onLoadDocument();
 
 async function getPopularFilms() {
