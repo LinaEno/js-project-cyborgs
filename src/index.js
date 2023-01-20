@@ -6,3 +6,4 @@ import './js/modal-trailer';
 import './js/pagination';
 import './js/filter-panel';
 import './js/searchfield';
+import './js/fetchFilms';

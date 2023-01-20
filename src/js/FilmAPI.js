@@ -14,14 +14,6 @@ export class FilmAPI {
         this.page = 1;
     }
 
-    async  getFilms() {
-        
-        const response = await axios2.get(`/search/movie?api_key=${KEY}&language=en-US&page=${this.page}&query=${this.searchQuery}`);
-        return response.data;
-        
-
-    }
-
     async getPopularFilms() {
 
         const response = await axios2.get(`/trending/movie/day?api_key=${KEY}&language=en-US&page=${this.page}&query=${this.searchQuery}`);
@@ -37,13 +29,6 @@ export class FilmAPI {
 
     }
 
-    async getFilmsByRating() {
-
-    }
-
-    async getFilmsByYears() {
-        
-    }
 
     async getFilmsByName() {
 
