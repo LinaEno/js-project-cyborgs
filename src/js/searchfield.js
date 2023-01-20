@@ -1,9 +1,7 @@
-'use strict';
-
-import { FilmAPI } from './FilmAPI';
+import FilmApi from './FilmAPI';
 import { refs } from './refs';
 
-const filmApi = new FilmAPI();
+const filmApi = new FilmApi();
 console.log(filmApi);
 
 const onSearchFormSubmit = async event => {
@@ -31,5 +29,7 @@ const onSearchFormSubmit = async event => {
     console.log(err);
   }
 };
+
+refs.searchForm.addEventListener('submit', onSearchFormSubmit);
 
 refs.searchForm.addEventListener('submit', onSearchFormSubmit);
