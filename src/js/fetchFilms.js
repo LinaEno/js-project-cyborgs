@@ -14,7 +14,7 @@ async function getPopularFilms() {
 async function renderMarkup(films) {
   const markup = films
     .map(film => {
-      return `<li class="cards__item">
+      return `<li class="cards__item" data-id=${film.id}>
           <img
             class="cards__photo"
             alt="film"
