@@ -4,7 +4,7 @@ import { refs } from './refs';
 import { renderMarkup } from './fetchFilms';
 
 const filmApi = new FilmAPI();
-console.log(filmApi);
+
 
 const onSearchFormSubmit = async event => {
   event.preventDefault();
@@ -15,7 +15,7 @@ const onSearchFormSubmit = async event => {
 
   try {
     const data = await filmApi.getFilmsByName();
-    console.log(data);
+    
 
     if (!data.results.length) {
       setTimeout(() => {
@@ -28,8 +28,9 @@ const onSearchFormSubmit = async event => {
 
       return;
     }
-    console.log(data.results);
+    
     refs.cardsListEl.innerHTML = renderMarkup(data.results);
+    event.target.reset();
   } catch (err) {
     console.log(err);
   }
