@@ -32,4 +32,3 @@ const onSearchFormSubmit = async event => {
 
 refs.searchForm.addEventListener('submit', onSearchFormSubmit);
 
-refs.searchForm.addEventListener('submit', onSearchFormSubmit);
