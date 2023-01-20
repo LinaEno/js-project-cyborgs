@@ -1,10 +1,10 @@
 'use strict';
-
 import { FilmAPI } from './FilmAPI';
 import { refs } from './refs';
+import { renderMarkup } from './fetchFilms';
 
 const filmApi = new FilmAPI();
-// console.log(filmApi);
+console.log(filmApi);
 
 const onSearchFormSubmit = async event => {
   event.preventDefault();
@@ -22,11 +22,14 @@ const onSearchFormSubmit = async event => {
         refs.formWarning.classList.add('is-hidden');
       }, 5000);
       refs.formWarning.classList.remove('is-hidden');
+      event.target.reset();
       refs.formWarning.textContent =
         'Search result not successful. Enter the correct movie name and try again.';
-      event.target.reset();
+
       return;
     }
+    console.log(data.results);
+    refs.cardsListEl.innerHTML = renderMarkup(data.results);
   } catch (err) {
     console.log(err);
   }
