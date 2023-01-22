@@ -76,7 +76,7 @@ function createMovieCard(obj) {
             <img class="film-card__picture" src="https://image.tmdb.org/t/p/w300${poster_path}" alt="${title}">
             <h2 class="film-card__title">${title}</h2>
             <div class="film-card__general-info">
-                <p class="info-item">Vote/Votes<span>${vote_average}/${vote_count}</span></p>
+                <p class="info-item">Vote/Votes<span>${vote_average.toFixed(1)}/${vote_count}</span></p>
                 <p class="info-item">Popularity<span>${popularity}</span></p>
                 <p class="info-item">Original Title<span>${original_title}</span></p>
                 <p class="info-item">Genre<span>${[...genresArr]}</span></p>

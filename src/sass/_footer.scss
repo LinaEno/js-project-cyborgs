@@ -35,3 +35,39 @@
 }
 .modal_footer_names {
 }
+
+// .footer {
+//   margin: 0 auto;
+// }
+
+.footer__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  line-height: 1.2;
+  margin: 0;
+  
+}
+
+.footer__first-text {
+  padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.footer__second-text {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.footer__third-text {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.footer__link {
+  text-decoration: underline;
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+}

@@ -1,7 +1,7 @@
 'use strict';
 import { FilmAPI } from './FilmAPI';
 import { refs } from './refs';
-import { renderMarkup } from './fetchFilms';
+import { renderMarkup } from './pagination.js';
 
 const filmApi = new FilmAPI();
 
