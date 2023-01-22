@@ -1,71 +1,20 @@
 'use strict';
 import { FilmAPI } from "./FilmAPI";
-const filmApi = new FilmAPI();
-
-// function openModal(e) {
-    
-//     refs.modal.classList.remove('is-hidden');
-//     document.addEventListener('keydown', escClose);
-//     refs.modal.addEventListener('click', backdropClose);
-
-//     openTrailer(e.target.dataset.id);
-   
-// }
-
-// function closeModal() {
-//    refs.modal.classList.add('is-hidden');
-//    document.removeEventListener('keydown', escClose);
-//     refs.modalInfo.innerHTML = '';
-
-   
-// }
-
-// function escClose(event) {
-//    if (event.code === 'Escape') {
-//       closeModal();
-//    }
-// }
-
-// function backdropClose(event) {
-//    if (event.currentTarget === event.target) {
-//       closeModal();
-//    }
-// }
-
-// function openTrailer(id) {
-
-//     const trailerYouTube = `<iframe style="width: 100%; height: 100%;" data-id="${id}" src="https://www.youtube.com/embed/2963fc82afd3cb57f64d050a1ba5935c?autoplay=1" loading = "lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>Your browser does not support inline frames!</iframe>;`;
-//     return refs.modalInfo.innerHTML = trailerYouTube;
-// }
 
 
-// // const refs = {
-// //   openModalBtn: document.querySelector('[data-modal-trailer]'),
-// //   closeModalBtn: document.querySelector('[data-modal-trailer-close]'),
-// //     modal: document.querySelector('[data-trailer-modal]'),
-// //     modalInfo: document.querySelector('.modal-film__info'),
-// // };
+const refs = {
+  openModalBtn: document.querySelector('[data-modal-trailer]'),
+  closeModalBtn: document.querySelector('[data-modal-trailer-close]'),
+    modal: document.querySelector('[data-trailer-modal]'),
+    modalInfo: document.querySelector('.modal-film__info'),
+};
 
-// //     refs.openModalBtn.addEventListener('click', toggleModal);
-// //     refs.closeModalBtn.addEventListener('click', toggleModal);
-
-// // function toggleModal() {
-// //     refs.modal.classList.toggle('is-hidden');
-// // }
-
-// const refs = {
-//   openModalBtn: document.querySelector('[data-modal-trailer]'),
-//   closeModalBtn: document.querySelector('[data-modal-trailer-close]'),
-//     modal: document.querySelector('[data-trailer-modal]'),
-//     modalInfo: document.querySelector('.modal-film__info'),
-// };
-
-//     refs.openModalBtn.addEventListener('click', openModal);
-//     refs.closeModalBtn.addEventListener('click', closeModal);
+    refs.openModalBtn.addEventListener('click', onOpenVideo);
+    refs.closeModalBtn.addEventListener('click', onCloseModal);
 
 
 
-const API_KEY = 'e20dc8db2a19ccc0feaf13905c82de4b';
+const API_KEY = '2963fc82afd3cb57f64d050a1ba5935c';
 
 const filmsApi = axios.create({
   baseURL: "https://api.themoviedb.org/3/",
@@ -79,10 +28,9 @@ export function getTrailerById(id) {
     
 }
 
-
-export async function onImageClickOpenVideo(id) {
+export async function onOpenVideo(id) {
   try {
-    spinner.hidden = false;
+    
     const {
       data: { results: trailersArray },
     } = await getTrailerById(id);
@@ -91,18 +39,36 @@ export async function onImageClickOpenVideo(id) {
       const video = `
         <iframe class="modal-film__video" src="https://www.youtube.com/embed/${key}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         `;
-      modalVideo.innerHTML = video;
-      modalVideo.classList.remove('is-hidden');
-      modalVideo.addEventListener('click', onCloseModalClick);
+      refs.modal.innerHTML = video;
+      refs.modal.classList.remove('is-hidden');
+      refs.closeModalBtn.addEventListener('click', onCloseModal);
     } else {
-      Notify.failure('Trailers not found');
+      console.log('hi');
     }
   } catch (error) {
-    Notify.failure(error.message);
-  } finally {
-    spinner.hidden = true;
-  }
+    console.log('hi');
+  } 
 }
 
+export function onCloseModal() {
+  if (!refs.modal.classList.contains('is-hidden')) {
+    refs.modal.innerHTML = '';
+    refs.modal.classList.add('is-hidden');
+    return;
+  }
+  refs.modal.classList.add('is-hidden');
+  document.removeEventListener('keydown', onEscKeydown);
+  document.removeEventListener('click', onBackdropCloseClick);
+}
+function onBackdropCloseClick(e) {
+  if (e.target === e.currentTarget) {
+    onCloseModal();
+  }
+}
+function onEscKeydown(e) {
+  if (e.code === 'Escape' && !refs.modal.contains('is-hidden')) {
+    onCloseModal();
+  }
+}
 
 
