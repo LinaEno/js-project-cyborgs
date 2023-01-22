@@ -1,6 +1,7 @@
 'use strict';
 import axios from 'axios'; 
 import { FilmAPI } from './FilmAPI';
+import { genresInfo } from './genres';
 
 const filmAPI = new FilmAPI();
 
@@ -15,29 +16,40 @@ async function getPopularFilms(page=1) {
   return data.results; 
 } 
 
-let genre = [];
-
-async function getGenres() {
-    const genresRes = await filmAPI.getFilmsByGenres();
-  const genresArr = genresRes.genres;
-
-    return genresArr;
-
+export function getGenresName(genresInfo, genreIds) {
+  const genresName = genresInfo.reduce((acc, genre) => {
+    if (genreIds.includes(genre.id)) {
+      return [...acc, genre.name];
+    }
+    return acc;
+  }, []);
+  return genresName.length > 2 ? genresName.slice(0, 2)+",Other" : genresName;
 }
 
-function getGenresName(films, genresArr) {
-    
-  const genreNameArr = films.forEach(film => {
-    const genreName = film.genre_ids.map(filmID => genresArr.find(({ id }) =>
-      id === filmID)).map(({ name }) => name);
-      genre.push(genreName)
-    
-  })
-}
-console.log(genre);
+// export function renderMarkup(films) { 
+  
+//   const markup = films 
+//     .map(film => { 
+//       return `<li class="cards__item" data-id=${film.id}> 
+//           <img 
+//             class="cards__photo" 
+//             alt="film" 
+//             src="https://image.tmdb.org/t/p/w500${film.poster_path}" 
+//             width="395" 
+//             loading="lazy" 
+//           /> 
+//           <h3 class="cards__title">${film.title}</h3> 
+//           <p class="cards__info">${getGenresName(genresInfo,film.genre_ids)} | ${film.release_date}</p> 
+//           <p class="rating">${film.vote_average.toFixed(1)}</p>
+//         </li>`; 
+//     }) 
+//     .join(''); 
+//   cardsListEl.insertAdjacentHTML('beforeend', markup); 
+//   return markup; 
+// } 
 
 
-export function renderMarkup(films, genre) { 
+export function renderMarkup(films) { 
   
   const markup = films 
     .map(film => { 
@@ -58,7 +70,8 @@ export function renderMarkup(films, genre) {
   cardsListEl.insertAdjacentHTML('beforeend', markup); 
   return markup; 
 } 
- 
+
+
 async function onLoadDocument() { 
   try { 
     const popularFilms = await getPopularFilms(); 
