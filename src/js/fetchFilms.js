@@ -37,7 +37,7 @@ import axios from 'axios';
 
 const cardsListEl = document.querySelector('.cards__list');
 
-onLoadDocument();
+// onLoadDocument();
 
 async function getPopularFilms() {
   const { data } = await axios.get(
@@ -67,11 +67,11 @@ export function renderMarkup(films) {
   return markup;
 }
 
-export async function onLoadDocument() {
-  try {
-    const popularFilms = await getPopularFilms();
-    renderMarkup(popularFilms);
-  } catch (error) {
-    console.log(error);
-  }
-}
+// export async function onLoadDocument() {
+//   try {
+//     const popularFilms = await getPopularFilms();
+//     renderMarkup(popularFilms);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
