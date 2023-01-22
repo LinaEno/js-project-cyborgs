@@ -73,16 +73,24 @@ function createMovieCard(obj) {
   
   const markupModal = `
         <div class="film-card">
-            <img class="film-card__picture" src="https://image.tmdb.org/t/p/w300${poster_path}" alt="${title}">
+            <div class="film-card__img">
+            <img class="film-card__picture" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}" width="375">
+            </div>
+            <div class="film-card__info">
             <h2 class="film-card__title">${title}</h2>
             <div class="film-card__general-info">
-                <p class="info-item">Vote/Votes<span>${vote_average.toFixed(1)}/${vote_count}</span></p>
-                <p class="info-item">Popularity<span>${popularity}</span></p>
-                <p class="info-item">Original Title<span>${original_title}</span></p>
-                <p class="info-item">Genre<span>${[...genresArr]}</span></p>
+                <p class="info-item">Vote/Votes<span class="span__info">${vote_average.toFixed(1)}/${vote_count}</span></p>
+                <p class="info-item">Popularity<span class="span__info">${popularity}</span></p>
+                <p class="info-item">Original Title<span class="span__info">${original_title}</span></p>
+                <p class="info-item">Genre<span class="span__info">${[...genresArr]}</span></p>
             </div>
             <p class="film-card__overview-title">About</p>
             <p class="film-card__overview">${overview}</p>
+            <div class="modal-film__buttons-block">
+                <button type="submit" class="modal-film__btn-watched" data-modal-watched>Add to watched</button>
+                <button type="submit" class="modal-film__btn-queue" data-modal-queue>Add to queue</button>
+            </div>
+            </div>
         </div>
     `;
     modalCardInfo.insertAdjacentHTML('beforeend', markupModal);

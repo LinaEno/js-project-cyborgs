@@ -15,28 +15,30 @@ async function getPopularFilms(page=1) {
   return data.results; 
 } 
 
-async function getGenres() {
-        
-    const genresRes = await filmAPI.getFilmsByGenres();
-    const genresArr = genresRes.genres;
-    console.log(genresArr);
-}
+let genre = [];
 
+async function getGenres() {
+    const genresRes = await filmAPI.getFilmsByGenres();
+  const genresArr = genresRes.genres;
+
+    return genresArr;
+
+}
 
 function getGenresName(films, genresArr) {
-    films.forEach(film => {
-        const genreName = film.genre_ids.map(filmID => genresArr.find(({ id }) => 
-            id === filmID)).map(({name}) => name);
-      console.log(genreName);
-      
-    })
-  
+    
+  const genreNameArr = films.forEach(film => {
+    const genreName = film.genre_ids.map(filmID => genresArr.find(({ id }) =>
+      id === filmID)).map(({ name }) => name);
+      genre.push(genreName)
+    
+  })
 }
+console.log(genre);
 
-console.log(getGenresName);
- 
-export function renderMarkup(films) { 
-  getGenres()
+
+export function renderMarkup(films, genre) { 
+  
   const markup = films 
     .map(film => { 
       return `<li class="cards__item" data-id=${film.id}> 
