@@ -79,16 +79,40 @@ function createMovieCard(obj) {
             <div class="film-card__info">
             <h2 class="film-card__title">${title}</h2>
             <div class="film-card__general-info">
-                <p class="info-item">Vote/Votes<span class="span__info">${vote_average.toFixed(1)}/${vote_count}</span></p>
-                <p class="info-item">Popularity<span class="span__info">${popularity}</span></p>
-                <p class="info-item">Original Title<span class="span__info">${original_title}</span></p>
-                <p class="info-item">Genre<span class="span__info">${[...genresArr]}</span></p>
+                <ul class="info-list">
+                <li class="info">
+                <p class="info-item">Vote/Votes</p>
+                <p class="info-result"><span class="accent-vote">${vote_average.toFixed(1)}</span>/${vote_count}</p>
+                </li>
+                <li class="info">
+                <p class="info-item">Popularity</p>
+                <p class="info-result">${popularity.toFixed(1)}</p>
+                </li>
+                <li class="info">
+                <p class="info-item">Original Title</p>
+                <p class="info-result  to-up">${original_title}</p>
+                </li>
+                <li class="info">
+                <p class="info-item">Genre</p>
+                <p class="info-result">${[...genresArr]}</p>
+                </li>
+                </ul>
             </div>
             <p class="film-card__overview-title">About</p>
             <p class="film-card__overview">${overview}</p>
             <div class="modal-film__buttons-block">
-                <button type="submit" class="modal-film__btn-watched" data-modal-watched>Add to watched</button>
-                <button type="submit" class="modal-film__btn-queue" data-modal-queue>Add to queue</button>
+                <button type="submit" class="modal-film__btn-watched button" data-modal-watched><span></span>
+        <span></span>
+        <span></span>
+        <span></span>Add to watched</button>
+                <button type="submit" class="modal-film__btn-queue button" data-modal-queue><span></span>
+        <span></span>
+        <span></span>
+        <span></span>Add to queue</button>
+                <button type="submit" class="modal-film__btn-queue button" data-modal-queue><span></span>
+        <span></span>
+        <span></span>
+        <span></span>Watch trailer</button>
             </div>
             </div>
         </div>

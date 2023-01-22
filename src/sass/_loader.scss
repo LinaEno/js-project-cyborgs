@@ -1,0 +1,107 @@
+.preloader {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background: url(../../images/prel-film.jpg);
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    // background: -webkit-radial-gradient(rgba(0,0,0,0) 50%,rgba(0,0,0,0.8)); 
+    z-index: 10;
+}
+
+.preloader>.preloader-box {
+    position: absolute;
+    width: 345px;
+    height: 30px;
+    top: 50%;
+    left: 50%;
+}
+
+.preloader .preloader-box>div {
+    position: relative;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    background: #CCC;
+    float: left;
+    text-align: center;
+    line-height: 30px;
+    font-family: Verdana;
+    font-size: 30px;
+    color: #FFF;
+}
+
+.preloader .preloader-box>div:nth-child(1) {
+    background: red;
+    margin-right: 15px;
+    animation: movement 600ms ease 0ms infinite alternate;
+}
+
+.preloader .preloader-box>div:nth-child(2) {
+    background: green;
+    margin-right: 15px;
+    animation: movement 600ms ease 100ms infinite alternate;
+}
+
+.preloader .preloader-box>div:nth-child(3) {
+    background: yellow;
+    margin-right: 15px;
+    animation: movement 600ms ease 200ms infinite alternate;
+}
+
+.preloader .preloader-box>div:nth-child(4) {
+    background: #3366FF;
+    margin-right: 15px;
+    animation: movement 600ms ease 300ms infinite alternate;
+}
+
+.preloader .preloader-box>div:nth-child(5) {
+    background: orangered;
+    margin-right: 15px;
+    animation: movement 600ms ease 400ms infinite alternate;
+}
+
+.preloader .preloader-box>div:nth-child(6) {
+    background: lightseagreen;
+    margin-right: 15px;
+    animation: movement 600ms ease 500ms infinite alternate;
+}
+
+.preloader .preloader-box>div:nth-child(7) {
+    background: lightcoral;
+    margin-right: 15px;
+    animation: movement 600ms ease 600ms infinite alternate;
+}
+
+.preloader .preloader-box>div:nth-child(8) {
+    background: lightblue;
+    animation: movement 600ms ease 700ms infinite alternate;
+
+}
+
+@keyframes movement {
+    from {
+        transform: scale(1.0) translateY(0px) rotateX(0deg);
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    }
+
+    to {
+        transform: scale(1.5) translateY(-25px) rotateX(45deg);
+        box-shadow: 0 25px 40px rgba(0, 0, 0, 0.4);
+        background: blueviolet;
+    }
+}
+
+.preloader-text {
+    display: block;
+    text-align: center;
+    font-family: Verdana;
+    font-size: 30px;
+    font-weight: bold;
+    color: lightyellow;
+    text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 40px #00ff00, 0 0 80px #00ff00, 0 0 90px #00ff00, 0 0 100px #00ff00, 0 0 150px #00ff00;
+}
