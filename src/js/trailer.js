@@ -15,19 +15,13 @@ const refs = {
 
 const filmApi = new FilmAPI();
 
-function getTrailerById(id) {
-  const data = filmApi.getFilmVideo(id);
 
-  console.log(data);
-  
-  return data;
-    
-}
 
 export async function onOpenVideo(id) {
   try {
     
-    const { results: trailersArray } = await getTrailerById(id);
+    const { results: trailersArray } = await filmApi.getFilmVideo(id);
+
     
     console.log(trailersArray);
 
@@ -39,9 +33,7 @@ export async function onOpenVideo(id) {
       refs.modalInfo.innerHTML = video;
       refs.modal.classList.remove('is-hidden');
       refs.closeModalBtn.addEventListener('click', onCloseModal);
-    } else {
-      console.log('hi');
-    }
+    } 
   } catch (error) {
     console.log(error);
   } 

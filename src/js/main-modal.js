@@ -6,6 +6,7 @@ const filmApi= new FilmAPI();
 const modalBackdrop = document.querySelector('.backdrop__modal-film');
 const buttonCloseModal = document.querySelector('#modal-close-button');
 const modalCardInfo = document.querySelector('.modal-film__info');
+// console.log(onQueueBtnClick);
 
 refs.cardsListEl.addEventListener('click', onOpenModal);
 
@@ -13,6 +14,7 @@ async function onOpenModal(event) {
   if (!event.target.closest('[data-id]')) {
     return;
   }
+ 
   const currentCardId = event.target.closest('li').dataset.id;
     const movieRes = await filmApi.getFilmDetails(currentCardId);
     console.log(movieRes)
@@ -24,7 +26,7 @@ async function onOpenModal(event) {
   });
   refs.watchedBtn = document.querySelector('[data-modal-watched-id]')
   refs.queueBtn = document.querySelector('[data-modal-queue-id]')
-
+ console.log(refs.queueBtn);
   refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
   refs.queueBtn.addEventListener('click', onQueueBtnClick);
   
@@ -120,6 +122,6 @@ function createMovieCard(obj) {
             </div>
         </div>
     `;
-    modalCardInfo.insertAdjacentHTML('beforeend', markupModal);
+  modalCardInfo.innerHTML = markupModal;
     return markupModal;
 }

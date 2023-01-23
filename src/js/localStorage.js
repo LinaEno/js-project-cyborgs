@@ -13,8 +13,13 @@ console.log(id);
     try {
     const results = await filmApi.getFilmDetails(id);;
     console.log(results);
-    const watchedFilms = JSON.parse(localStorage.getItem("watched") || '[]');
-    watchedFilms.push(results);
+    const watchedFilms = JSON.parse(localStorage.getItem("watched")) || [];
+        if (watchedFilms.some(film => film.id === +id)) {
+            console.log('qwe');
+            return;
+        } 
+        watchedFilms.push(results);
+    
 
     localStorage.setItem("watched", JSON.stringify(watchedFilms));
     refs.watchedBtn.textContent = "Remove from watched";
@@ -31,27 +36,22 @@ console.log(e);
 console.log(id);
     try {
     const results = await filmApi.getFilmDetails(id);
- console.log(results);
-    const queuedFilms = JSON.parse(localStorage.getItem("queue") || '[]');
-    queuedFilms.push(results);
+    console.log(results);
+        const queuedFilms = JSON.parse(localStorage.getItem("queue")) || [];
+        if (queuedFilms.some(film => film.id === +id)) {
+            console.log('qwe');
+            return;
+        } 
+        queuedFilms.push(results);
 
         localStorage.setItem("queue", JSON.stringify(queuedFilms));
         refs.queueBtn.textContent = "Remove from queue";
 
-        // if (refs.queueBtn.textContent === "Remove from queue") {
-        //     localStorage.removeItem("queue");
-        //     refs.queueBtn.textContent = "Add from queue";
-        // }
+        if (refs.queueBtn.textContent.contains("Remove from queue")) {
+            localStorage.removeItem("queue");
+            refs.queueBtn.textContent = "Add from queue";
+        }
     } catch (err) {
     console.log(err);
     }
-}
-
-refs.watchedBtnLib.addEventListener('click', renderWatchedFilms);
-
-// refs.queueBtnLib.addEventListener('click', renderQueueFilms);
-
-function renderWatchedFilms() {
-    const films = JSON.parse(localStorage.getItem('watched') || '[]');
-    renderMarkup(films);
 }

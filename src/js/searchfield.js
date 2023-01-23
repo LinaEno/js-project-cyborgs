@@ -20,7 +20,8 @@ const onSearchFormSubmit = async event => {
     
 
     if (!data.results.length) {
-      setTimeout(() => {
+        setTimeout(() => {
+            console.log('hi');
         refs.formWarning.classList.add('is-hidden');
       }, 10000);
       refs.formWarning.classList.remove('is-hidden');
