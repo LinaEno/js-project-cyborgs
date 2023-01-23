@@ -39,13 +39,17 @@ console.log(id);
     console.log(results);
         const queuedFilms = JSON.parse(localStorage.getItem("queue")) || [];
         if (queuedFilms.some(film => film.id === +id)) {
-            console.log('qwe');
             return;
         } 
         queuedFilms.push(results);
-
+        console.log(queuedFilms);
         localStorage.setItem("queue", JSON.stringify(queuedFilms));
         refs.queueBtn.textContent = "Remove from queue";
+        refs.queueBtn.classList.add('remove');
+        // if (refs.queueBtn.classList.contains('remove')) {
+        //     localStorage.removeItem(results)
+        // }
+
 
         
     } catch (err) {

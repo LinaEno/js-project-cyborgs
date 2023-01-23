@@ -14,6 +14,8 @@ function renderWatchedFilms() {
     renderMarkupLib(films);
     refs.watchedBtnLib.classList.add('active');
     refs.queueBtnLib.classList.remove('active');
+
+
 }
 
 function renderQueueFilms() {
