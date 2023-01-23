@@ -2,11 +2,13 @@
 import { FilmAPI } from './FilmAPI';
 import { refs } from './refs';
 import { renderMarkup } from './pagination.js';
+import {toTop} from './up.js';
 
 const filmApi = new FilmAPI();
 const paginationRef = document.querySelector('.pagination-container'); 
 const footer = document.querySelector('.footer');
 const body = document.querySelector('body')
+
 
 const onSearchFormSubmit = async event => {
   event.preventDefault();
@@ -29,6 +31,7 @@ const onSearchFormSubmit = async event => {
       refs.formWarning.textContent =
         typeText();
       refs.cardsListEl.innerHTML = errorBanner;
+      toTop.style.visibility='hidden';
       paginationRef.style.display = 'none';
       footer.style.display = 'none';
       body.style.backgroundColor = 'black';
@@ -72,11 +75,13 @@ function typeText() {
                 }
             }
             typeLine();
+            
         }, getRandomInt(100)) 
-        
+       
     }
 
     typeLine();
+    
 }
 
 
@@ -126,3 +131,4 @@ function errorBanner() {
 </h4>
 `
 }
+
