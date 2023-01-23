@@ -35,7 +35,7 @@ export function renderMarkup(films) {
             class="cards__photo" 
             alt="film" 
             src="https://image.tmdb.org/t/p/w500${film.poster_path}" 
-            width="395" 
+            width="280" 
             loading="lazy" 
           /> 
           <h3 class="cards__title">${film.title}</h3> 
