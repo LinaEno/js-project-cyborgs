@@ -47,7 +47,7 @@ console.log(id);
         localStorage.setItem("queue", JSON.stringify(queuedFilms));
         refs.queueBtn.textContent = "Remove from queue";
 
-        if (refs.queueBtn.textContent.contains("Remove from queue")) {
+        if (refs.queueBtn.textContent==="Remove from queue") {
             localStorage.removeItem("queue");
             refs.queueBtn.textContent = "Add from queue";
         }
