@@ -37,7 +37,7 @@ console.log(id);
 
         localStorage.setItem("queue", JSON.stringify(queuedFilms));
         refs.queueBtn.textContent = "Remove from queue";
-        
+
         // if (refs.queueBtn.textContent === "Remove from queue") {
         //     localStorage.removeItem("queue");
         //     refs.queueBtn.textContent = "Add from queue";
@@ -47,6 +47,11 @@ console.log(id);
     }
 }
 
-// refs.watchedBtnLib.addEventListener('click', renderWatchedFilms);
+refs.watchedBtnLib.addEventListener('click', renderWatchedFilms);
 
 // refs.queueBtnLib.addEventListener('click', renderQueueFilms);
+
+function renderWatchedFilms() {
+    const films = JSON.parse(localStorage.getItem('watched') || '[]');
+    renderMarkup(films);
+}
