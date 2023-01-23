@@ -12,6 +12,8 @@ function renderWatchedFilms() {
         return;
     }
     renderMarkupLib(films);
+    refs.watchedBtnLib.classList.add('active');
+    refs.queueBtnLib.classList.remove('active');
 }
 
 function renderQueueFilms() {
@@ -21,6 +23,8 @@ function renderQueueFilms() {
         return
     }
     renderMarkupLib(films);
+    refs.queueBtnLib.classList.add('active');
+    refs.watchedBtnLib.classList.remove('active');
 }
 
 renderWatchedFilms();

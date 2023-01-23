@@ -1,4 +1,4 @@
-'use strict';
+
 import axios from 'axios'; 
 import { FilmAPI } from './FilmAPI';
 import { genresInfo } from './genres';
@@ -48,30 +48,6 @@ export function renderMarkup(films) {
   return markup; 
 } 
 
-
-// export function renderMarkup(films) { 
-  
-//   const markup = films 
-//     .map(film => { 
-//       return `<li class="cards__item" data-id=${film.id}> 
-//           <img 
-//             class="cards__photo" 
-//             alt="film" 
-//             src="https://image.tmdb.org/t/p/w500${film.poster_path}" 
-//             width="395" 
-//             loading="lazy" 
-//           /> 
-//           <h3 class="cards__title">${film.title}</h3> 
-//           <p class="cards__info">${film.genre_ids} | ${film.release_date}</p> 
-//           <p class="rating">${film.vote_average.toFixed(1)}</p>
-//         </li>`; 
-//     }) 
-//     .join(''); 
-//   cardsListEl.insertAdjacentHTML('beforeend', markup); 
-//   return markup; 
-// } 
-
-
 async function onLoadDocument() { 
   try { 
     const popularFilms = await getPopularFilms(); 
@@ -80,7 +56,7 @@ async function onLoadDocument() {
     console.log(error); 
   } 
 } 
- 
+
 const btn1Ref = document.querySelector('[data-index="1"]'); 
 const btn2Ref = document.querySelector('[data-index="2"]'); 
 const btn3Ref = document.querySelector('[data-index="3"]'); 
@@ -93,7 +69,7 @@ const rightArrowRef = document.querySelector('.arrow-right');
 const leftArrowRef = document.querySelector('.arrow-left'); 
 const prevDotsRef = document.querySelector('#previous'); 
 const afterDotsRef = document.querySelector('#after'); 
- 
+
  
 paginationRef.addEventListener('click', onPaginationClick); 
  

@@ -19,6 +19,6 @@ export function renderMarkupLib(films) {
         </li>`; 
     }) 
     .join(''); 
-  refs.filmLibList.insertAdjacentHTML('beforeend', markup); 
+  refs.filmLibList.innerHTML=markup; 
   return markup; 
 } 

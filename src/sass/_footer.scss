@@ -30,6 +30,9 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 1.14;
+  @media screen and (min-width: 768px) {
+      font-size: 16px;
+    }
 }
 
 .footer__mobile {
