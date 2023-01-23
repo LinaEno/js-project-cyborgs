@@ -39,7 +39,7 @@ export function renderMarkup(films) {
             loading="lazy" 
           /> 
           <h3 class="cards__title">${film.title}</h3> 
-          <p class="cards__info">${getGenresName(genresInfo,film.genre_ids)} | ${film.release_date}</p> 
+          <p class="cards__info">${getGenresName(genresInfo, film.genre_ids)} | ${film.release_date}</p> 
           <p class="rating">${film.vote_average.toFixed(1)}</p>
         </li>`; 
     }) 

@@ -22,7 +22,7 @@ const onSearchFormSubmit = async event => {
     if (!data.results.length) {
       setTimeout(() => {
         refs.formWarning.classList.add('is-hidden');
-      }, 15000);
+      }, 10000);
       refs.formWarning.classList.remove('is-hidden');
       event.target.reset();
       refs.formWarning.textContent =

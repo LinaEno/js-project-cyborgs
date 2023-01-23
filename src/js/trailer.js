@@ -43,7 +43,7 @@ export async function onOpenVideo(id) {
       console.log('hi');
     }
   } catch (error) {
-    console.log('hi catch');
+    console.log(error);
   } 
 }
 

@@ -1,6 +1,7 @@
 import {FilmAPI} from './FilmAPI.js'
 import { refs } from './refs.js';
 import { onOpenVideo } from './trailer.js';
+import { onWatchedBtnClick, onQueueBtnClick } from './localStorage.js';
 const filmApi= new FilmAPI();
 const modalBackdrop = document.querySelector('.backdrop__modal-film');
 const buttonCloseModal = document.querySelector('#modal-close-button');
@@ -21,11 +22,11 @@ async function onOpenModal(event) {
   refs.openTrailerFilm.addEventListener('click', () => {
     onOpenVideo(currentCardId);
   });
-  refs.watchedBtn = document.querySelector('[data-modal-watched]')
-  refs.queueBtn = document.querySelector('[data-modal-queue]')
+  refs.watchedBtn = document.querySelector('[data-modal-watched-id]')
+  refs.queueBtn = document.querySelector('[data-modal-queue-id]')
 
-  // refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
-  // refs.queueBtn.addEventListener('click', onQueueBtnClick);
+  refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
+  refs.queueBtn.addEventListener('click', onQueueBtnClick);
   
   modalBackdrop.classList.remove('is-hidden');
   window.addEventListener('click', closeModalbyBackdrop);
@@ -73,6 +74,7 @@ function createMovieCard(obj) {
     overview,
     genres,
     poster_path,
+    id
   } = obj;
   const genresArr = genres.map(el => el.name);
   
@@ -106,14 +108,10 @@ function createMovieCard(obj) {
             <p class="film-card__overview-title">About</p>
             <p class="film-card__overview">${overview}</p>
             <div class="modal-film__buttons-block">
-                <button type="submit" class="btn-watched button" data-modal-watched><span></span>
-        <span></span>
-        <span></span>
-        <span></span>Add to watched</button>
-                <button type="submit" class="btn-queue button" data-modal-queue><span></span>
-        <span></span>
-        <span></span>
-        <span></span>Add to queue</button>
+                <button type="submit" class="btn-watched button" data-modal-watched-id=${id}>
+        Add to watched</button>
+                <button type="submit" class="btn-queue button" data-modal-queue-id=${id}>
+        Add to queue</button>
                 <button type="submit" class="btn-trailer button" data-modal-trailer><span></span>
         <span></span>
         <span></span>
