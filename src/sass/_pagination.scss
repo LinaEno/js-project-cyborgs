@@ -22,14 +22,17 @@
     padding: 0;
     background-color: #fff;
     border: none;
-    // color: #020202;
+
+
+    // color: #020202; 
+
     cursor: pointer;
     font-family: Roboto;
     font-weight: 600;
     font-size: 16px;
     line-height: 1.333;
-    width: 40px; 
-    height: 40px; 
+    width: 40px;
+    height: 40px;
 }
 
 .pagination--current {
@@ -37,7 +40,11 @@
     border-radius: 5px;
     background-color: #fff;
     color: #fa5ce2;
+
     
+
+
+
 }
 
 .dots,
@@ -50,6 +57,7 @@
 
 .arrow-left,
 .arrow-right {
+
   width: 60px;
   height: 60px;
   border-radius: 5px;
@@ -65,5 +73,8 @@
 .arrow-right {
   background-image: url(../../images/icons-left-right.png);
   transform: matrix(-1, 0, 0, 1, 0, 0);
+
+
+
 }
 

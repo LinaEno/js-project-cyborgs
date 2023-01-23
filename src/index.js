@@ -8,9 +8,9 @@ import './js/pagination';
 import './js/filter-panel';
 import './js/searchfield';
 import './js/fetchFilms';
-import './js/markups';
+
 import './js/footer-modal';
-import './js/storage';
+
 import './js/localStorage';
 import './js/trailer';
 import './js/up';

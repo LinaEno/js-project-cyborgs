@@ -1,0 +1,24 @@
+import { refs } from "./refs-lib";
+
+
+export function renderMarkup(films) { 
+  console.log(films);
+  const markup = films 
+    .map(film => { 
+      return `<li class="cards__item" data-id=${film.id}> 
+          <img 
+            class="cards__photo" 
+            alt="film" 
+            src="https://image.tmdb.org/t/p/w500${film.poster_path}" 
+            width="395" 
+            loading="lazy" 
+          /> 
+          <h3 class="cards__title">${film.title}</h3> 
+          <p class="cards__info">${film.genres.map(({name})=>name).join(', ').slice(0, 2)+",Other"} | ${film.release_date}</p> 
+          <p class="rating">${film.vote_average.toFixed(1)}</p>
+        </li>`; 
+    }) 
+    .join(''); 
+  refs.filmLibList.insertAdjacentHTML('beforeend', markup); 
+  return markup; 
+} 
