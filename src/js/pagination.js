@@ -26,29 +26,6 @@ export function getGenresName(genresInfo, genreIds) {
   return genresName.length > 2 ? genresName.slice(0, 2)+",Other" : genresName;
 }
 
-// export function renderMarkup(films) { 
-  
-//   const markup = films 
-//     .map(film => { 
-//       return `<li class="cards__item" data-id=${film.id}> 
-//           <img 
-//             class="cards__photo" 
-//             alt="film" 
-//             src="https://image.tmdb.org/t/p/w500${film.poster_path}" 
-//             width="395" 
-//             loading="lazy" 
-//           /> 
-//           <h3 class="cards__title">${film.title}</h3> 
-//           <p class="cards__info">${getGenresName(genresInfo,film.genre_ids)} | ${film.release_date}</p> 
-//           <p class="rating">${film.vote_average.toFixed(1)}</p>
-//         </li>`; 
-//     }) 
-//     .join(''); 
-//   cardsListEl.insertAdjacentHTML('beforeend', markup); 
-//   return markup; 
-// } 
-
-
 export function renderMarkup(films) { 
   
   const markup = films 
@@ -62,7 +39,7 @@ export function renderMarkup(films) {
             loading="lazy" 
           /> 
           <h3 class="cards__title">${film.title}</h3> 
-          <p class="cards__info">${film.genre_ids} | ${film.release_date}</p> 
+          <p class="cards__info">${getGenresName(genresInfo,film.genre_ids)} | ${film.release_date}</p> 
           <p class="rating">${film.vote_average.toFixed(1)}</p>
         </li>`; 
     }) 
@@ -70,6 +47,29 @@ export function renderMarkup(films) {
   cardsListEl.insertAdjacentHTML('beforeend', markup); 
   return markup; 
 } 
+
+
+// export function renderMarkup(films) { 
+  
+//   const markup = films 
+//     .map(film => { 
+//       return `<li class="cards__item" data-id=${film.id}> 
+//           <img 
+//             class="cards__photo" 
+//             alt="film" 
+//             src="https://image.tmdb.org/t/p/w500${film.poster_path}" 
+//             width="395" 
+//             loading="lazy" 
+//           /> 
+//           <h3 class="cards__title">${film.title}</h3> 
+//           <p class="cards__info">${film.genre_ids} | ${film.release_date}</p> 
+//           <p class="rating">${film.vote_average.toFixed(1)}</p>
+//         </li>`; 
+//     }) 
+//     .join(''); 
+//   cardsListEl.insertAdjacentHTML('beforeend', markup); 
+//   return markup; 
+// } 
 
 
 async function onLoadDocument() { 

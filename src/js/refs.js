@@ -8,6 +8,9 @@ export const refs = {
   queueBtn: document.querySelector('[data-modal-queue]'),
   trailerBtn: document.querySelector('[data-modal-trailer]'),
   filmLibList: document.querySelector('.film-list'),
+  openTrailerFilm: null,
+  watchedBtn: null,
+  queueBtn: null,
 };
 
 

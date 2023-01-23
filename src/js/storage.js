@@ -1,27 +1,31 @@
-export const addToStorage = (key, value) => {
+export const load = key => {
   try {
-    if (typeof value === 'string') {
-      localStorage.setItem(key, value);
-    } else {
-      localStorage.setItem(key, JSON.stringify(value));
-    }
+    const serializedState = localStorage.getItem(key);
+    return serializedState === null ? [] : JSON.parse(serializedState);
   } catch (error) {
-    console.error(error);
+    console.error('Get state error: ', error.message);
   }
 };
 
-export const getFromStorage = key => {
+export const save = (key, value) => {
   try {
-    return JSON.parse(localStorage.getItem(key));
+    const serializedState = JSON.stringify(value);
+    localStorage.setItem(key, serializedState);
   } catch (error) {
-    console.error(error);
+    console.error('Set items error: ', error.message);
   }
 };
 
-export const removeFromStorage = key => {
+export const removeLocal = (key, id) => {
   try {
-    localStorage.removeItem(key);
+    const locStorage = load(key);
+    const restFilms = [...locStorage].filter(film => film.id != id);
+    localStorage.setItem(key, JSON.stringify(restFilms));
   } catch (error) {
-    console.error(error);
+    console.error('Get state error: ', error.message);
   }
+};
+
+export const clearLocal = () => {
+  localStorage.clear();
 };

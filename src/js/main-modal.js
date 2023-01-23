@@ -1,5 +1,6 @@
 import {FilmAPI} from './FilmAPI.js'
 import { refs } from './refs.js';
+import { onOpenVideo } from './trailer.js';
 const filmApi= new FilmAPI();
 const modalBackdrop = document.querySelector('.backdrop__modal-film');
 const buttonCloseModal = document.querySelector('#modal-close-button');
@@ -16,18 +17,22 @@ async function onOpenModal(event) {
     console.log(movieRes)
   createMovieCard(movieRes);
 
+  refs.openTrailerFilm = document.querySelector('[data-modal-trailer]');
+  refs.openTrailerFilm.addEventListener('click', () => {
+    onOpenVideo(currentCardId);
+  });
+  refs.watchedBtn = document.querySelector('[data-modal-watched]')
+  refs.queueBtn = document.querySelector('[data-modal-queue]')
+
+  // refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
+  // refs.queueBtn.addEventListener('click', onQueueBtnClick);
+  
   modalBackdrop.classList.remove('is-hidden');
   window.addEventListener('click', closeModalbyBackdrop);
   window.addEventListener('keydown', onKeyClick);
   buttonCloseModal.addEventListener('click', closeModalbyCross);
-}
 
-// async function addMovieInfo(id) {
-//   const { data } = await axios.get(
-//     https://api.themoviedb.org/3/movie/${id}?api_key=2963fc82afd3cb57f64d050a1ba5935c
-//   );
-//   return data;
-// }
+}
 
 function closeModalbyCross() {
   modalBackdrop.classList.add('is-hidden');
@@ -40,7 +45,7 @@ function onKeyClick(event) {
     return;
   }
   modalBackdrop.classList.add('is-hidden');
-  modalFilmInfo.innerHTML = '';
+  modalCardInfo.innerHTML = '';
   clearBackdropListeners();
 }
 
