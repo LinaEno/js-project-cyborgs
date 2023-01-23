@@ -150,7 +150,7 @@ function onPaginationClick(event) {
       btn5Ref.textContent = 5; 
       btn1Ref.classList.add('pagination--current'); 
             currentPage = btn1Ref.textContent;
-        leftArrowRef.hidden = true; 
+      leftArrowRef.hidden = true; 
       prevDotsRef.hidden = true; 
       firstPageRef.hidden = true; 
     } 
@@ -193,15 +193,15 @@ function onPaginationClick(event) {
           
   } 
 } 
-let pageSize = 9; 
+// let pageSize = 9; 
  
-function defineResultsPerPage() { 
-  if (window.innerWidth >= 1024) { 
-    pageSize = 9; 
-  } else if (window.innerWidth >= 768 && window.innerWidth < 1024) { 
-    pageSize = 8; 
-  } else if (window.innerWidth < 768) { 
-    pageSize = 4; 
-  } 
-  return pageSize; 
-}
+// function defineResultsPerPage() { 
+//   if (window.innerWidth >= 1024) { 
+//     pageSize = 9; 
+//   } else if (window.innerWidth >= 768 && window.innerWidth < 1024) { 
+//     pageSize = 8; 
+//   } else if (window.innerWidth < 768) { 
+//     pageSize = 4; 
+//   } 
+//   return pageSize; 
+// }

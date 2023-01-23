@@ -13,5 +13,6 @@ import './js/footer-modal';
 import './js/storage';
 import './js/localStorage';
 import './js/trailer';
+import './js/up';
 
 
