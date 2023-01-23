@@ -22,3 +22,6 @@ function renderQueueFilms() {
     }
     renderMarkup(films);
 }
+
+renderWatchedFilms();
+renderQueueFilms();
