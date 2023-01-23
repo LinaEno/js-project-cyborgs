@@ -9,11 +9,13 @@
   text-align: center;
 }
 
+
 .footer__container {
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
   color: #545454;
+  height: 20px;
 
   @media screen and (min-width: 768px) {
     display: flex;
@@ -32,6 +34,7 @@
 
 .footer__mobile {
   display: flex;
+  height: 20px;
 }
 
 @media screen and (max-width: 767.99px) {
@@ -68,7 +71,7 @@
 
 .modal_footer {
   min-width: 280px;
-  background-color: white;
+  background-color: rgb(85, 81, 81);
   border-radius: 10px;
   position: absolute;
   top: 50%;
