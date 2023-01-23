@@ -1,7 +1,7 @@
 import { refs } from "./refs-lib";
 
 
-export function renderMarkup(films) { 
+export function renderMarkupLib(films) { 
   console.log(films);
   const markup = films 
     .map(film => { 
@@ -14,7 +14,7 @@ export function renderMarkup(films) {
             loading="lazy" 
           /> 
           <h3 class="cards__title">${film.title}</h3> 
-          <p class="cards__info">${film.genres.map(({name})=>name).join(', ').slice(0, 2)+",Other"} | ${film.release_date}</p> 
+          <p class="cards__info">${film.genres.map(({name})=>name).join(', ')} | ${film.release_date}</p> 
           <p class="rating">${film.vote_average.toFixed(1)}</p>
         </li>`; 
     }) 

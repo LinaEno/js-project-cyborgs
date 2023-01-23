@@ -1,4 +1,4 @@
-import { renderMarkup } from "./renderLib";
+import { renderMarkupLib } from "./renderLib";
 import { refs } from "./refs-lib";
 
 refs.watchedBtnLib.addEventListener('click', renderWatchedFilms);
@@ -11,7 +11,7 @@ function renderWatchedFilms() {
         refs.filmLibList.innerHTML = "Not films"
         return;
     }
-    renderMarkup(films);
+    renderMarkupLib(films);
 }
 
 function renderQueueFilms() {
@@ -20,7 +20,7 @@ function renderQueueFilms() {
         refs.filmLibList.innerHTML = "Not films"
         return
     }
-    renderMarkup(films);
+    renderMarkupLib(films);
 }
 
 renderWatchedFilms();
