@@ -22,7 +22,10 @@
     padding: 0;
     background-color: #fff;
     border: none;
+
+
     // color: #020202; 
+
     cursor: pointer;
     font-family: Roboto;
     font-weight: 600;
@@ -38,6 +41,10 @@
     background-color: #fff;
     color: #fa5ce2;
 
+    
+
+
+
 }
 
 .dots,
@@ -50,20 +57,24 @@
 
 .arrow-left,
 .arrow-right {
-    width: 60px;
-    height: 60px;
-    border-radius: 5px;
-    background-position: center;
-    background-repeat: no-repeat;
+
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .arrow-left {
-    background-repeat: no-repeat;
-    background-image: url(../../images/icons-left-right.png);
+  background-repeat: no-repeat;
+  background-image: url(../../images/icons-left-right.png);
 }
 
 .arrow-right {
-    background-image: url(../../images/icons-left-right.png);
-    transform: matrix(-1, 0, 0, 1, 0, 0);
+  background-image: url(../../images/icons-left-right.png);
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+
+
+
 }
 
