@@ -169,15 +169,3 @@ function onPaginationClick(event) {
           
   } 
 } 
-// let pageSize = 9; 
- 
-// function defineResultsPerPage() { 
-//   if (window.innerWidth >= 1024) { 
-//     pageSize = 9; 
-//   } else if (window.innerWidth >= 768 && window.innerWidth < 1024) { 
-//     pageSize = 8; 
-//   } else if (window.innerWidth < 768) { 
-//     pageSize = 4; 
-//   } 
-//   return pageSize; 
-// }
