@@ -45,7 +45,11 @@
 
 #svgWrap_1,
 #svgWrap_2,
-div {
+p,
+a,
+button,
+input,
+.footer__container {
     animation: hueRotate 6s ease-in-out 3s infinite;
 }
 
