@@ -1,40 +1,39 @@
-import {FilmAPI} from './FilmAPI.js'
-import { refs } from './refs.js';
+import { FilmAPI } from './FilmAPI.js';
+import { refs } from './refs-lib.js';
 import { onOpenVideo } from './trailer.js';
 import { onWatchedBtnClick, onQueueBtnClick } from './localStorage.js';
-const filmApi= new FilmAPI();
+const filmApi = new FilmAPI();
 const modalBackdrop = document.querySelector('.backdrop__modal-film');
 const buttonCloseModal = document.querySelector('#modal-close-button');
 const modalCardInfo = document.querySelector('.modal-film__info');
 // console.log(onQueueBtnClick);
 
-refs.cardsListEl.addEventListener('click', onOpenModal);
+refs.filmLibList.addEventListener('click', onOpenModal);
 
 async function onOpenModal(event) {
   if (!event.target.closest('[data-id]')) {
     return;
   }
- 
+
   const currentCardId = event.target.closest('li').dataset.id;
-    const movieRes = await filmApi.getFilmDetails(currentCardId);
-    console.log(movieRes)
+  const movieRes = await filmApi.getFilmDetails(currentCardId);
+  console.log(movieRes);
   createMovieCard(movieRes);
 
   refs.openTrailerFilm = document.querySelector('[data-modal-trailer]');
   refs.openTrailerFilm.addEventListener('click', () => {
     onOpenVideo(currentCardId);
   });
-  refs.watchedBtn = document.querySelector('[data-modal-watched-id]')
-  refs.queueBtn = document.querySelector('[data-modal-queue-id]')
- console.log(refs.queueBtn);
+  refs.watchedBtn = document.querySelector('[data-modal-watched-id]');
+  refs.queueBtn = document.querySelector('[data-modal-queue-id]');
+  console.log(refs.queueBtn);
   refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
   refs.queueBtn.addEventListener('click', onQueueBtnClick);
-  
+
   modalBackdrop.classList.remove('is-hidden');
   window.addEventListener('click', closeModalbyBackdrop);
   window.addEventListener('keydown', onKeyClick);
   buttonCloseModal.addEventListener('click', closeModalbyCross);
-
 }
 
 function closeModalbyCross() {
@@ -76,10 +75,14 @@ function createMovieCard(obj) {
     overview,
     genres,
     poster_path,
-    id
+    id,
   } = obj;
+  const watchedFilms = JSON.parse(localStorage.getItem('watched')) || [];
+  const queuedFilms = JSON.parse(localStorage.getItem('queue')) || [];
+  const inWatched = watchedFilms.some(film => film.id === id);
+  const inQueued = queuedFilms.some(film => film.id === id);
   const genresArr = genres.map(el => el.name);
-  
+
   const markupModal = `
         <div class="film-card">
             <div class="film-card__img">
@@ -91,7 +94,9 @@ function createMovieCard(obj) {
                 <ul class="info-list">
                 <li class="info">
                 <p class="info-item">Vote/Votes</p>
-                <p class="info-result"><span class="accent-vote">${vote_average.toFixed(1)}</span>/${vote_count}</p>
+                <p class="info-result"><span class="accent-vote">${vote_average.toFixed(
+                  1
+                )}</span>/${vote_count}</p>
                 </li>
                 <li class="info">
                 <p class="info-item">Popularity</p>
@@ -111,9 +116,9 @@ function createMovieCard(obj) {
             <p class="film-card__overview">${overview}</p>
             <div class="modal-film__buttons-block">
                 <button type="submit" class="btn-watched button" data-modal-watched-id=${id}>
-        Add to watched</button>
+        ${inWatched ? 'Remove from watched' : 'Add to watched'}</button>
                 <button type="submit" class="btn-queue button" data-modal-queue-id=${id}>
-        Add to queue</button>
+        ${inQueued ? 'Remove from queue' : 'Add to queue'}</button>
                 <button type="submit" class="btn-trailer button" data-modal-trailer><span></span>
         <span></span>
         <span></span>
@@ -123,5 +128,5 @@ function createMovieCard(obj) {
         </div>
     `;
   modalCardInfo.innerHTML = markupModal;
-    return markupModal;
+  return markupModal;
 }

@@ -9,5 +9,3 @@ import './js/footer-modal';
 import './js/localStorage';
 import './js/trailer';
 import './js/up';
-
-

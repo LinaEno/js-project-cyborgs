@@ -1,5 +1,3 @@
-import { renderMarkup } from './pagination';
-import { refs } from './refs';
 import { FilmAPI } from './FilmAPI';
 
 const filmApi = new FilmAPI();
