@@ -5,5 +5,5 @@ window.onload = function () {
   setTimeout(function () {
     preloader.classList.add('visually-hidden');
     body.style.overflow = 'visible';
-  }, 4000);
+  }, 2000);
 };
