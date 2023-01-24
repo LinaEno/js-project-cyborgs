@@ -10,7 +10,7 @@ function renderWatchedFilms() {
   const films = JSON.parse(localStorage.getItem('watched')) || [];
   if (!films.length) {
     refs.filmLibList.innerHTML = `<p class="lib-text">There are no films here yet</p>
-<img src="../images/lenta.png" alt="lenta" width="500">`;
+<img src="${img}" alt="lenta" width="500">`;
     return;
   }
   renderMarkupLib(films);
@@ -21,10 +21,11 @@ function renderWatchedFilms() {
 function renderQueueFilms() {
   const films = JSON.parse(localStorage.getItem('queue')) || [];
   if (!films.length) {
-    refs.filmLibList.innerHTML = `<p class="lib-text">There are no films here yet</p>
-<img src="../images/lenta.png" alt="lenta">`;
+    refs.filmLibList.innerHTML = `<p class="lib-text">There are no films here ... yet!
+<img src="${img}" alt="lenta" width="500"></p>`;
     return;
   }
+  r;
   renderMarkupLib(films);
   refs.queueBtnLib.classList.add('active');
   refs.watchedBtnLib.classList.remove('active');

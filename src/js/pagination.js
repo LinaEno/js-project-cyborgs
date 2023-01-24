@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { FilmAPI } from './FilmAPI';
 import { genresInfo } from './genres';
+import defimg from '../../images/zaglushka.jpg';
 
 const filmAPI = new FilmAPI();
 
@@ -32,7 +33,9 @@ export function renderMarkup(films) {
           <img 
             class="cards__photo" 
             alt="film" 
-            src="https://image.tmdb.org/t/p/w500${film.poster_path}" 
+            src="https://image.tmdb.org/t/p/w500${
+              film.poster_path
+            }" || src=${defimg}
             width="280" 
             loading="lazy" 
           /> 

@@ -9,3 +9,4 @@ import './js/modal-card-lib';
 import './js/localStorage';
 import './js/trailer';
 import './js/up';
+import './js/animhd';
