@@ -115,9 +115,9 @@ function createMovieCard(obj) {
             <p class="film-card__overview-title">About</p>
             <p class="film-card__overview">${overview}</p>
             <div class="modal-film__buttons-block">
-                <button type="submit" class="btn-watched button" data-modal-watched-id=${id} >
+                <button type="submit" class="btn-watched button" data-modal-watched-id=${id} data-action="add">
         ${inWatched ? 'Remove from watched' : 'Add to watch'}</button>
-                <button type="submit" class="btn-queue button" data-modal-queue-id=${id}>
+                <button type="submit" class="btn-queue button" data-modal-queue-id=${id}  data-action="add">
         ${inWatched ? 'Remove from queue' : 'Add to queue'}</button>
                 <button type="submit" class="btn-trailer button" data-modal-trailer><span></span>
         <span></span>

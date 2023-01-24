@@ -2,13 +2,12 @@
 import { FilmAPI } from './FilmAPI';
 import { refs } from './refs';
 import { renderMarkup } from './pagination.js';
-import {toTop} from './up.js';
+import { toTop } from './up.js';
 
 const filmApi = new FilmAPI();
-const paginationRef = document.querySelector('.pagination-container'); 
+const paginationRef = document.querySelector('.pagination-container');
 const footer = document.querySelector('.footer');
-const body = document.querySelector('body')
-
+const body = document.querySelector('body');
 
 const onSearchFormSubmit = async event => {
   event.preventDefault();
@@ -19,25 +18,23 @@ const onSearchFormSubmit = async event => {
 
   try {
     const data = await filmApi.getFilmsByName();
-    
 
     if (!data.results.length) {
-        setTimeout(() => {
-            console.log('hi');
+      setTimeout(() => {
+        console.log('hi');
         refs.formWarning.classList.add('is-hidden');
       }, 10000);
       refs.formWarning.classList.remove('is-hidden');
       event.target.reset();
-      refs.formWarning.textContent =
-        typeText();
+      refs.formWarning.textContent = typeText();
       refs.cardsListEl.innerHTML = errorBanner;
-      toTop.style.visibility='hidden';
+      toTop.style.visibility = 'hidden';
       paginationRef.style.display = 'none';
       footer.style.display = 'none';
       body.style.backgroundColor = 'black';
       return;
     }
-    
+
     refs.cardsListEl.innerHTML = renderMarkup(data.results);
     event.target.reset();
   } catch (err) {
@@ -48,45 +45,40 @@ const onSearchFormSubmit = async event => {
 refs.searchForm.addEventListener('submit', onSearchFormSubmit);
 
 const t = [
-    'Search result not successful. Enter the correct movie name and try again.'
+  'Search result not successful. Enter the correct movie name and try again.',
 ];
 
 function typeText() {
-    let line = 0;
-    let count = 0;
-    let out = '';
-    let htmlOut = document.querySelector('.header-form__warning');
+  let line = 0;
+  let count = 0;
+  let out = '';
+  let htmlOut = document.querySelector('.header-form__warning');
 
-    function typeLine() {
-        
-        let interval = setTimeout(function () {
-            out += t[line][count];
-            htmlOut.innerHTML = out + '|';
-            count++;
-            
-            if (count >= t[line].length) {
-                count = 0;
-                line++;
+  function typeLine() {
+    let interval = setTimeout(function () {
+      out += t[line][count];
+      htmlOut.innerHTML = out + '|';
+      count++;
 
-                if (line === t.length) {
-                    clearTimeout(interval);
-                    htmlOut.innerHTML = out;
-                    return true;
-                }
-            }
-            typeLine();
-            
-        }, getRandomInt(100)) 
-       
-    }
+      if (count >= t[line].length) {
+        count = 0;
+        line++;
 
-    typeLine();
-    
+        if (line === t.length) {
+          clearTimeout(interval);
+          htmlOut.innerHTML = out;
+          return true;
+        }
+      }
+      typeLine();
+    }, getRandomInt(100));
+  }
+
+  typeLine();
 }
 
-
 function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
+  return Math.floor(Math.random() * Math.floor(max));
 }
 
 typeText();
@@ -128,7 +120,5 @@ function errorBanner() {
 
 <h4 class="error-message">Page Not Found
 <a href="./index.html" class="button btn-err">Go Back</a>
-</h4>
-`
+</h4>`;
 }
-
