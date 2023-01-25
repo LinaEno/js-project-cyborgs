@@ -7,6 +7,7 @@ const modalBackdrop = document.querySelector('.backdrop__modal-film');
 const buttonCloseModal = document.querySelector('#modal-close-button');
 const modalCardInfo = document.querySelector('.modal-film__info');
 // console.log(onQueueBtnClick);
+const defimg = new URL('/images/zaglushka.jpg', import.meta.url);
 
 refs.cardsListEl.addEventListener('click', onOpenModal);
 
@@ -86,7 +87,11 @@ function createMovieCard(obj) {
   const markupModal = `
         <div class="film-card">
             <div class="film-card__img">
-            <img class="film-card__picture" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}" width="375">
+            <img class="film-card__picture" src=${
+              poster_path
+                ? 'https://image.tmdb.org/t/p/w500/' + poster_path
+                : defimg
+            } alt="${title}" width="375">
             </div>
             <div class="film-card__info">
             <h2 class="film-card__title">${title}</h2>

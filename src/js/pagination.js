@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { FilmAPI } from './FilmAPI';
 import { genresInfo } from './genres';
-import defimg from '../../images/zaglushka.jpg';
 
-const filmAPI = new FilmAPI();
+import { filmApi } from './searchfield';
 
 const cardsListEl = document.querySelector('.cards__list');
 onLoadDocument();
+const defimg = new URL('/images/zaglushka.jpg', import.meta.url);
 
 async function getPopularFilms(page = 1) {
   const { data } = await axios.get(
@@ -33,10 +33,13 @@ export function renderMarkup(films) {
           <img 
             class="cards__photo" 
             alt="film" 
-            src="https://image.tmdb.org/t/p/w500${
+            src=${
               film.poster_path
-            }" || src=${defimg}
-            width="280" 
+                ? 'https://image.tmdb.org/t/p/w500/' + film.poster_path
+                : defimg
+            }
+            width="280"
+            height="502" 
             loading="lazy" 
           /> 
           <h3 class="cards__title">${film.title}</h3> 
@@ -52,7 +55,7 @@ export function renderMarkup(films) {
   return markup;
 }
 
-async function onLoadDocument() {
+export async function onLoadDocument() {
   try {
     const popularFilms = await getPopularFilms();
     renderMarkup(popularFilms);
@@ -164,7 +167,17 @@ function onPaginationClick(event) {
       lastPageRef.hidden = false;
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
+    if (filmApi.searchQuery?.length > 0) {
+      filmApi.page = currentPage;
+      console.log(currentPage);
+      // лодер
+      cardsListEl.innerHTML = '';
+      filmApi.getFilmsByName().then(data => {
+        cardsListEl.innerHTML = renderMarkup(data.results);
+        console.log(data);
+      });
+      return;
+    }
     getPopularFilms(currentPage).then(data => {
       cardsListEl.innerHTML = renderMarkup(data);
       console.log(data);
