@@ -7,6 +7,8 @@ const filterContainer = document.querySelector('.js-filter');
 filterContainer.addEventListener('change', onFilterChange);
 const filterContainerVote = document.querySelector('.js-filter-vote');
 filterContainerVote.addEventListener('change', onVotesFilter);
+const filterClear = document.querySelector('.js-clear');
+filterClear.addEventListener('click', onClickClear);
 
 // function onFilterChange(e) {
 //   e.preventDefault();
@@ -87,4 +89,10 @@ async function onVotesFilter(e) {
   console.log(results);
   console.log(results.results);
   refs.cardsListEl.innerHTML = renderMarkup(results.results);
+}
+
+function onClickClear(e) {
+  e.preventDefault();
+  refs.cardsListEl.innerHTML = '';
+  onLoadDocument();
 }
