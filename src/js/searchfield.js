@@ -10,6 +10,7 @@ const footer = document.querySelector('.footer');
 const body = document.querySelector('body');
 const filterContainer = document.querySelector('.js-filter');
 const filterContainerVote = document.querySelector('.js-filter-vote');
+const filterClear = document.querySelector('.js-clear');
 
 const onSearchFormSubmit = async event => {
   event.preventDefault();
@@ -24,8 +25,6 @@ const onSearchFormSubmit = async event => {
     if (!data.results.length) {
       setTimeout(() => {
         refs.formWarning.classList.add('is-hidden');
-        filterContainer.style.display = 'block';
-        filterContainerVote.style.display = 'block';
       }, 10000);
       refs.formWarning.classList.remove('is-hidden');
       event.target.reset();
@@ -37,6 +36,7 @@ const onSearchFormSubmit = async event => {
       body.style.backgroundColor = 'black';
       filterContainer.style.display = 'none';
       filterContainerVote.style.display = 'none';
+      filterClear.style.display = 'none';
       return;
     }
 

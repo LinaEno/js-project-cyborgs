@@ -80,13 +80,17 @@ function createMovieCard(obj) {
   const watchedFilms = JSON.parse(localStorage.getItem('watched')) || [];
   const queuedFilms = JSON.parse(localStorage.getItem('queue')) || [];
   const inWatched = watchedFilms.some(film => film.id === id);
-  const inQueued = queuedFilms.some(film => film.id === id);
+  const isQueued = queuedFilms.some(film => film.id === id);
   const genresArr = genres.map(el => el.name);
 
   const markupModal = `
         <div class="film-card">
             <div class="film-card__img">
-            <img class="film-card__picture" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}" width="375">
+            <img class="film-card__picture" src=${
+              poster_path
+                ? 'https://image.tmdb.org/t/p/w500/' + poster_path
+                : defimg
+            } alt="${title}" width="375">
             </div>
             <div class="film-card__info">
             <h2 class="film-card__title">${title}</h2>

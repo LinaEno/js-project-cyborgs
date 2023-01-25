@@ -94,5 +94,7 @@ async function onVotesFilter(e) {
 function onClickClear(e) {
   e.preventDefault();
   refs.cardsListEl.innerHTML = '';
+  filterContainer.value = 1;
+  filterContainerVote.value = 11;
   onLoadDocument();
 }
