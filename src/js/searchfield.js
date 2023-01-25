@@ -5,6 +5,7 @@ import { renderMarkup } from './pagination.js';
 import { toTop } from './up.js';
 import { paginationRef } from './pagination.js';
 import { onLoadDocument } from './pagination.js';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 export const filmApi = new FilmAPI();
 const paginationRef = document.querySelector('.pagination-container');
@@ -16,7 +17,13 @@ const filterClear = document.querySelector('.js-clear');
 
 const onSearchFormSubmit = async event => {
   event.preventDefault();
-
+  Loading.hourglass();
+  // Loading.standard();
+  // Loading.arrows();
+  // Loading.dots();
+  // Loading.pulse();
+  // Loading.circle();
+  Loading.remove(600);
   filmApi.searchQuery = event.target.elements.query.value.trim();
   filmApi.page = 1;
   refs.formWarning.textContent = '';

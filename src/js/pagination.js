@@ -1,8 +1,6 @@
 import axios from 'axios';
-import { FilmAPI } from './FilmAPI';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { genresInfo } from './genres';
-
-import { filmApi } from './searchfield';
 
 const cardsListEl = document.querySelector('.cards__list');
 onLoadDocument();
@@ -182,6 +180,13 @@ function onPaginationClick(event) {
     // }
 
     getPopularFilms(currentPage).then(data => {
+      // Loading.hourglass();
+      // Loading.standard();
+      // Loading.arrows();
+      // Loading.dots();
+      // Loading.pulse();
+      Loading.circle();
+      Loading.remove(600);
       cardsListEl.innerHTML = renderMarkup(data);
       console.log(data);
     });
