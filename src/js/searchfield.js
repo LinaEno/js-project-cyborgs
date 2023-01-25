@@ -8,7 +8,6 @@ import { onLoadDocument } from './pagination.js';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 export const filmApi = new FilmAPI();
-const paginationRef = document.querySelector('.pagination-container');
 const footer = document.querySelector('.footer');
 const body = document.querySelector('body');
 const filterContainer = document.querySelector('.js-filter');
