@@ -23,8 +23,9 @@ const onSearchFormSubmit = async event => {
 
     if (!data.results.length) {
       setTimeout(() => {
-        console.log('hi');
         refs.formWarning.classList.add('is-hidden');
+        filterContainer.style.display = 'block';
+        filterContainerVote.style.display = 'block';
       }, 10000);
       refs.formWarning.classList.remove('is-hidden');
       event.target.reset();
@@ -122,7 +123,5 @@ function errorBanner() {
     </defs>
 </svg>
 
-<h4 class="error-message">Page Not Found
-<a href="./index.html" class="button btn-err">Go Back</a>
-</h4>`;
+<h4 class="error-message">Page Not Found<a href="./index.html" class="button btn-err">Go Back</a></h4>`;
 }
