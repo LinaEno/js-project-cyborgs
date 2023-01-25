@@ -3,6 +3,8 @@ import { FilmAPI } from './FilmAPI';
 import { refs } from './refs';
 import { renderMarkup } from './pagination.js';
 import { toTop } from './up.js';
+import { paginationRef } from './pagination.js';
+import { onLoadDocument } from './pagination.js';
 
 export const filmApi = new FilmAPI();
 const paginationRef = document.querySelector('.pagination-container');
@@ -41,6 +43,57 @@ const onSearchFormSubmit = async event => {
     }
 
     refs.cardsListEl.innerHTML = renderMarkup(data.results);
+
+    const btnLoadMore = document.createElement('button');
+    btnLoadMore.textContent = 'Load more';
+    btnLoadMore.classList.add('button');
+    btnLoadMore.classList.add('load-more');
+    btnLoadMore.style.position = 'absolute';
+    btnLoadMore.style.bottom = '-20px';
+    btnLoadMore.style.left = '43%';
+    // btnLoadMore.style.transform = 'translate(-55 %)';
+    btnLoadMore.style.width = '150px';
+    btnLoadMore.style.textAlign = 'center';
+    refs.cardsListEl.append(btnLoadMore);
+    paginationRef.style.display = 'none';
+
+    console.log(btnLoadMore);
+
+    // btnLoadMore.document.querySelector('.load-more');
+
+    btnLoadMore.addEventListener('click', async () => {
+      filmApi.page += 1;
+      const data = await filmApi.getFilmsByName(filmApi.page);
+      refs.cardsListEl.insertAdjacentHTML(
+        'beforeend',
+        renderMarkup(data.results)
+      );
+      console.log(data);
+      if (data.total_pages === filmApi.page) {
+        const onMain = document.createElement('button');
+        onMain.textContent = 'On main';
+        onMain.classList.add('button');
+        refs.cardsListEl.append(onMain);
+        btnLoadMore.style.display = 'none';
+        onMain.style.position = 'absolute';
+        onMain.style.bottom = '-20px';
+        onMain.style.left = '43%';
+        onMain.style.width = '150px';
+        onMain.style.textAlign = 'center';
+        onMain.addEventListener('click', () => {
+          refs.cardsListEl.innerHTML = '';
+          onLoadDocument();
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+          });
+          paginationRef.style.display = 'block';
+        });
+      } else {
+        refs.cardsListEl.append(btnLoadMore);
+      }
+    });
+
     event.target.reset();
   } catch (err) {
     console.log(err);

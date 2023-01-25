@@ -52,6 +52,7 @@ export function renderMarkup(films) {
     })
     .join('');
   cardsListEl.insertAdjacentHTML('beforeend', markup);
+  // cardsListEl.innerHTML = markup;
   return markup;
 }
 
@@ -71,7 +72,7 @@ const btn4Ref = document.querySelector('[data-index="4"]');
 const btn5Ref = document.querySelector('[data-index="5"]');
 const firstPageRef = document.querySelector('.first-button');
 const lastPageRef = document.querySelector('.last-button');
-const paginationRef = document.querySelector('.pagination-container');
+export const paginationRef = document.querySelector('.pagination-container');
 const rightArrowRef = document.querySelector('.arrow-right');
 const leftArrowRef = document.querySelector('.arrow-left');
 const prevDotsRef = document.querySelector('#previous');
@@ -168,17 +169,17 @@ function onPaginationClick(event) {
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    if (filmApi.searchQuery?.length > 0) {
-      filmApi.page = currentPage;
-      console.log(currentPage);
-      // лодер
-      cardsListEl.innerHTML = '';
-      filmApi.getFilmsByName().then(data => {
-        cardsListEl.innerHTML = renderMarkup(data.results);
-        console.log(data.total_pages);
-      });
-      return;
-    }
+    // if (filmApi.searchQuery?.length > 0) {
+    //   filmApi.page = currentPage;
+    //   console.log(currentPage);
+    //   // лодер
+    //   cardsListEl.innerHTML = '';
+    //   filmApi.getFilmsByName().then(data => {
+    //     cardsListEl.innerHTML = renderMarkup(data.results);
+    //     console.log(data.total_pages);
+    //   });
+    //   return;
+    // }
 
     getPopularFilms(currentPage).then(data => {
       cardsListEl.innerHTML = renderMarkup(data);
