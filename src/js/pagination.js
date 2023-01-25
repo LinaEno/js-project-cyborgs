@@ -167,6 +167,7 @@ function onPaginationClick(event) {
       lastPageRef.hidden = false;
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
     if (filmApi.searchQuery?.length > 0) {
       filmApi.page = currentPage;
       console.log(currentPage);
@@ -174,10 +175,11 @@ function onPaginationClick(event) {
       cardsListEl.innerHTML = '';
       filmApi.getFilmsByName().then(data => {
         cardsListEl.innerHTML = renderMarkup(data.results);
-        console.log(data);
+        console.log(data.total_pages);
       });
       return;
     }
+
     getPopularFilms(currentPage).then(data => {
       cardsListEl.innerHTML = renderMarkup(data);
       console.log(data);
