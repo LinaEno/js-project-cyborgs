@@ -83,12 +83,14 @@
 
 
 .cards__photo {
+    // object-fit: cover;
     @media screen and (min-width: 768px) {
             width: 335px;
+            // height: 445px;
                     }
     
         @media screen and (min-width: 1280px) {
-    
+            // height: 502px;
             width: 395px;
     
         }
