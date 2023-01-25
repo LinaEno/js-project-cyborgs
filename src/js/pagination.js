@@ -180,11 +180,6 @@ function onPaginationClick(event) {
     // }
 
     getPopularFilms(currentPage).then(data => {
-      // Loading.hourglass();
-      // Loading.standard();
-      // Loading.arrows();
-      // Loading.dots();
-      // Loading.pulse();
       Loading.circle();
       Loading.remove(600);
       cardsListEl.innerHTML = renderMarkup(data);

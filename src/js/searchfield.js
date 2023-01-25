@@ -17,12 +17,7 @@ const filterClear = document.querySelector('.js-clear');
 
 const onSearchFormSubmit = async event => {
   event.preventDefault();
-  Loading.hourglass();
-  // Loading.standard();
-  // Loading.arrows();
-  // Loading.dots();
-  // Loading.pulse();
-  // Loading.circle();
+  Loading.circle();
   Loading.remove(600);
   filmApi.searchQuery = event.target.elements.query.value.trim();
   filmApi.page = 1;
